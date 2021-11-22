@@ -1,10 +1,8 @@
 package com.revature.servlet;
 
 import com.revature.model.Employee;
-import com.revature.model.Request;
 import com.revature.service.EmployeeService;
 import com.revature.util.ServiceFactory;
-import com.revature.util.Status;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;

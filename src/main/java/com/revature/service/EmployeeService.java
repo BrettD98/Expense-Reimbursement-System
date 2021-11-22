@@ -13,6 +13,12 @@ import java.util.List;
 
 public class EmployeeService {
 
+    /**
+     * Takes in an email and password and compares it against the email and password in the database
+     * @param email email of user
+     * @param password password of user
+     * @return the employee if credential match, null if they do not
+     */
     public Employee login(String email, String password){
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
@@ -44,7 +50,11 @@ public class EmployeeService {
         return null;
     }
 
-    public boolean addEmployee(Employee employee){
+    /**
+     * Adds an employee to the database
+     * @param employee to add to db
+     */
+    public void addEmployee(Employee employee){
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
 
@@ -62,10 +72,14 @@ public class EmployeeService {
         session.save(e);
         t.commit();
         session.close();
-        return true;
     }
 
-    public boolean reqReimburs(int id, double amount){
+    /**
+     * Adds a reimbursement request into the database
+     * @param id of user requesting the reimbursement
+     * @param amount requested
+     */
+    public void reqReimburs(int id, double amount){
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
 
@@ -82,9 +96,13 @@ public class EmployeeService {
         session.save(r);
         t.commit();
         session.close();
-        return true;
     }
 
+    /**
+     * Builds a string of the past reimbursements of an employee
+     * @param id of user
+     * @return string of all past reimbursements
+     */
     public String viewPast(int id){
 
         Configuration cfg = new Configuration();
@@ -115,6 +133,11 @@ public class EmployeeService {
         return sb.toString();
     }
 
+    /**
+     * Builds a string of all pending reimbursements of an employee
+     * @param id of user
+     * @return string of all pending reimbursements
+     */
     public String viewPending(int id){
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
@@ -144,6 +167,10 @@ public class EmployeeService {
         return sb.toString();
     }
 
+    /**
+     * Builds a string of all unapproved reimbursements in database
+     * @return string of all unapproved reimbursements
+     */
     public String viewUnapproved(){
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
@@ -173,7 +200,11 @@ public class EmployeeService {
         return sb.toString();
     }
 
-    public boolean approve(int id){
+    /**
+     * Updates reimbursement status to approved
+     * @param id of reimbursement
+     */
+    public void approve(int id){
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
 
@@ -192,12 +223,15 @@ public class EmployeeService {
             t.commit();
             session.close();
 
-            return true;
+            return;
         }
-        return false;
     }
 
-    public boolean deny(int id){
+    /**
+     * Updates reimbursement status to denied
+     * @param id of reimbursement
+     */
+    public void deny(int id){
 
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
@@ -217,8 +251,7 @@ public class EmployeeService {
             t.commit();
             session.close();
 
-            return true;
+            return;
         }
-        return false;
     }
 }
