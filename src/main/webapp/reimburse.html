@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reimburse</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body class="bg-secondary">
+<div id="nav-placeholder">
+</div>
+
+<form class="text-center" action="employee" method="post">
+    <div class="form-group">
+        <input type="hidden" name="_call" value="reqReimburs">
+    </div>
+    <div class="form-group">
+        <label for="amount">Amount To Reimburse:</label><br>
+        <input Id="amount" type="text" name="amount">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+</form>
+
+
+
+
+<script>
+$(function(){
+  $("#nav-placeholder").load("nav.html");
+});
+</script>
+</body>
+</html>

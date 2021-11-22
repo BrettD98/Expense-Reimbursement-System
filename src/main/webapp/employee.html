@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body class="bg-secondary">
+<div id="nav-placeholder">
+</div>
+
+<div class="text-center">
+    <form action="employee" method="get">
+        <div class="form-group">
+            <input type="hidden" name="_call" value="viewPast">
+        </div>
+        <button type="submit" class="btn btn-secondary">View Past Reimbursements</button>
+    </form>
+    <form action="employee" method="get">
+        <div class="form-group">
+            <input type="hidden" name="_call" value="viewPending">
+        </div>
+        <button type="submit" class="btn btn-secondary">View Pending Reimbursements</button>
+    </form>
+    <form action="employee" method="get">
+        <div class="form-group">
+            <input type="hidden" name="_call" value="viewUnapproved">
+        </div>
+        <button type="submit" class="btn btn-secondary">View Unapproved Reimbursements</button>
+    </form>
+    <a class="btn btn-secondary" href="reimburse.html" style="margin: 15px">Request Reimbursement<span class="sr-only">(current)</span></a>
+</div>
+
+<script>
+$(function(){
+  $("#nav-placeholder").load("nav.html");
+});
+</script>
+</body>
+</html>

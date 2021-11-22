@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body class="bg-secondary">
+<div id="nav-placeholder">
+</div>
+
+<div class="d-flex justify-content-center ">
+  <form action="employee" method="get" >
+    <div class="form-group">
+      <input type="hidden" name="_call" value="login">
+    </div>
+    <div class="form-group">
+      <label for="Email">Email:</label><br>
+      <input id="Email" type="text" name="email"><br>
+    </div>
+    <div class="form-group">
+      <label for="Password">Password:</label><br>
+      <input id="Password" type="text" name="password"><br>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<script>
+$(function(){
+  $("#nav-placeholder").load("nav.html");
+});
+</script>
+
+</body>
+</html>
