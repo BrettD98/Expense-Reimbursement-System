@@ -5,25 +5,33 @@
     <title>Login</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <style>
+    .container{
+            width: 20%;
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+            margin-top: 10%;
+        }
+  </style>
 </head>
-<body class="bg-secondary">
+<body style="background-color: #537182">
 <div id="nav-placeholder">
 </div>
 
-<div class="d-flex justify-content-center ">
+<div class="mx-auto text-center container" style="background-color: #374b57">
+  <h3 class="text-light font-weight-bold">Please Login</h3>
   <form action="employee" method="get" >
     <div class="form-group">
       <input type="hidden" name="_call" value="login">
     </div>
     <div class="form-group">
-      <label for="Email">Email:</label><br>
-      <input id="Email" type="text" name="email"><br>
+      <input id="Email" type="text" name="email" placeholder="Email"><br>
     </div>
     <div class="form-group">
-      <label for="Password">Password:</label><br>
-      <input id="Password" type="text" name="password"><br>
+      <input id="Password" type="password" name="password" placeholder="Password"><br>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-secondary btn-block" style="margin-bottom: 10px">Submit</button>
   </form>
 </div>
 

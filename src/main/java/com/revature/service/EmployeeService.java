@@ -79,7 +79,7 @@ public class EmployeeService {
      * @param id of user requesting the reimbursement
      * @param amount requested
      */
-    public void reqReimburs(int id, double amount){
+    public void reqReimburs(int id, double amount, String reason){
         Configuration cfg = new Configuration();
         cfg.configure("hibernate.cfg.xml");
 
@@ -91,6 +91,7 @@ public class EmployeeService {
 
         r.setEmployeeId(id);
         r.setAmount(amount);
+        r.setReason(reason);
         r.setStatus(Status.PENDING);
 
         session.save(r);
@@ -114,19 +115,8 @@ public class EmployeeService {
         Query qry = session.createQuery("from Request r where employeeid = " + id);
 
         StringBuilder sb = new StringBuilder();
-        sb.append("<table class=\"table\"><thead><tr><th scope=\"col\">Id</th><th scope=\"col\">Amount</th><th scope=\"col\">Status</th></thead><tbody>");
-        List l = qry.list();
-        for (Object o : l) {
-            Request request = (Request) o;
-            sb.append("<tr><th scope=\"row\">")
-                    .append(request.getRequestId())
-                    .append("</th><td>")
-                    .append(request.getAmount())
-                    .append("</td><td>")
-                    .append(request.getStatus())
-                    .append("</td>");
-        }
-        sb.append("</tbody></table>");
+        addNav(sb);
+        buildTable(sb, qry);
 
         t.commit();
         session.close();
@@ -148,19 +138,8 @@ public class EmployeeService {
         Query qry = session.createQuery("from Request r where employeeid = " + id + "and status = 'PENDING'");
 
         StringBuilder sb = new StringBuilder();
-        sb.append("<table class=\"table\"><thead><tr><th scope=\"col\">Id</th><th scope=\"col\">Amount</th><th scope=\"col\">Status</th></thead><tbody>");
-        List l =qry.list();
-        for (Object o : l) {
-            Request request = (Request) o;
-            sb.append("<tr><th scope=\"row\">")
-                    .append(request.getRequestId())
-                    .append("</th><td>")
-                    .append(request.getAmount())
-                    .append("</td><td>")
-                    .append(request.getStatus())
-                    .append("</td>");
-        }
-        sb.append("</tbody></table>");
+        addNav(sb);
+        buildTable(sb, qry);
 
         t.commit();
         session.close();
@@ -181,19 +160,8 @@ public class EmployeeService {
         Query qry = session.createQuery("from Request r where status = 'PENDING'");
 
         StringBuilder sb = new StringBuilder();
-        sb.append("<table class=\"table\"><thead><tr><th scope=\"col\">Id</th><th scope=\"col\">Amount</th><th scope=\"col\">Status</th></thead><tbody>");
-        List l =qry.list();
-        for (Object o : l) {
-            Request request = (Request) o;
-            sb.append("<tr><th scope=\"row\">")
-                    .append(request.getRequestId())
-                    .append("</th><td>")
-                    .append(request.getAmount())
-                    .append("</td><td>")
-                    .append(request.getStatus())
-                    .append("</td>");
-        }
-        sb.append("</tbody></table>");
+        addNav(sb);
+        buildTable(sb, qry);
 
         t.commit();
         session.close();
@@ -253,5 +221,67 @@ public class EmployeeService {
 
             return;
         }
+    }
+
+    private void addNav(StringBuilder sb){
+        sb.append("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n" +
+                "    <a class=\"navbar-brand\" href=\"index.html\" onclick='deleteAllCookies()'>Logout</a>\n" +
+                "    <button  class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n" +
+                "        <span class=\"navbar-toggler-icon\"></span>\n" +
+                "    </button>\n" +
+                "\n" +
+                "    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
+                "        <ul class=\"navbar-nav mr-auto\">\n" +
+                "            <li class=\"nav-item active \">\n" +
+                "                <a class=\"nav-link text-right\" href=\"employee.html\">Menu<span class=\"sr-only\">(current)</span></a>\n" +
+                "            </li>\n" +
+                "        </ul>\n" +
+                "    </div>\n" +
+                "</nav>\n" +
+                "<script>\n" +
+                "    function deleteAllCookies() {\n" +
+                "    var cookies = document.cookie.split(\";\");\n" +
+                "\n" +
+                "    for (var i = 0; i < cookies.length; i++) {\n" +
+                "        var cookie = cookies[i];\n" +
+                "        var eqPos = cookie.indexOf(\"=\");\n" +
+                "        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;\n" +
+                "        document.cookie = name + \"=;expires=Thu, 01 Jan 1970 00:00:00 GMT\";\n" +
+                "    }\n" +
+                "}\n" +
+                "</script>");
+    }
+
+    private void buildTable(StringBuilder sb, Query qry) {
+        sb.append("<div style=\"margin: 25px \">\n" +
+                "<table class=\"table text-black font-weight-bold\">\n" +
+                    "<thead>\n" +
+                        "<tr>\n" +
+                            "<th scope=\"col\">Id</th>\n" +
+                            "<th scope=\"col\">Amount</th>\n" +
+                            "<th scope=\"col\">Reason</th>\n" +
+                            "<th scope=\"col\">Status</th>\n" +
+                            "<th scope=\"col\">Employee</th>\n" +
+                        "</tr>" +
+                    "</thead>\n" +
+                    "<tbody>");
+        List l =qry.list();
+        for (Object o : l) {
+            Request request = (Request) o;
+            sb.append("<tr><th scope=\"row\">")
+                    .append(request.getRequestId())
+                    .append("</th><td>")
+                    .append(request.getAmount())
+                    .append("</td><td>")
+                    .append(request.getReason())
+                    .append("</td><td>")
+                    .append(request.getStatus())
+                    .append("</td><td>")
+                    .append(request.getEmployeeId())
+                    .append("</td></tr>");
+        }
+        sb.append("</tbody>\n" +
+                "</table>\n" +
+                "<div>");
     }
 }

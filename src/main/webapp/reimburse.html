@@ -5,30 +5,65 @@
     <title>Reimburse</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <style>
+        form{
+            font-size:17px;
+        }
+        .container{
+            width: 20%;
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+            margin-top: 10%;
+        }
+    </style>
 </head>
-<body class="bg-secondary">
-<div id="nav-placeholder">
+<body style="background-color: #537182">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html" onclick='deleteAllCookies()'>Logout</a>
+    <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active ">
+                <a class="nav-link text-right" href="employee.html">Menu<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+    function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+</script>
+
+<div class="mx-auto text-center container" style="background-color: #374b57">
+    <form class="text-center text-light" action="employee" method="post">
+        <div class="form-group">
+            <input type="hidden" name="_call" value="reqReimburs">
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount To Reimburse:</label><br>
+            <input Id="amount" type="text" name="amount">
+        </div>
+        <div class="form-group">
+            <label for="amount">Reason:</label><br>
+            <input Id="reason" type="text" name="reason">
+        </div>
+        <button type="submit" class="btn btn-secondary btn-block" style="margin-bottom: 10px">Submit</button>
+    </form>
 </div>
 
-<form class="text-center" action="employee" method="post">
-    <div class="form-group">
-        <input type="hidden" name="_call" value="reqReimburs">
-    </div>
-    <div class="form-group">
-        <label for="amount">Amount To Reimburse:</label><br>
-        <input Id="amount" type="text" name="amount">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
 
-</form>
-
-
-
-
-<script>
-$(function(){
-  $("#nav-placeholder").load("nav.html");
-});
-</script>
 </body>
 </html>

@@ -5,37 +5,82 @@
     <title>Employee</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <style>
+        .btn {
+          font-size:20px
+        }
+        .container{
+            width: 30%;
+            border-style: solid;
+            border-width: 3px;
+            border-color: white;
+            margin-top: 10%;
+        }
+    </style>
 </head>
-<body class="bg-secondary">
-<div id="nav-placeholder">
-</div>
+<body style="background-color: #537182">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html" onclick='deleteAllCookies()'>Logout</a>
+    <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<div class="text-center">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active ">
+                <a class="nav-link text-right" href="employee.html">Menu<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<script>
+    function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+</script>
+
+<div class="mx-auto text-center container" style="background-color: #374b57" >
     <form action="employee" method="get">
         <div class="form-group">
             <input type="hidden" name="_call" value="viewPast">
         </div>
-        <button type="submit" class="btn btn-secondary">View Past Reimbursements</button>
+        <button type="submit" class="btn btn-secondary btn-block">View Past Reimbursements</button>
     </form>
     <form action="employee" method="get">
         <div class="form-group">
             <input type="hidden" name="_call" value="viewPending">
         </div>
-        <button type="submit" class="btn btn-secondary">View Pending Reimbursements</button>
+        <button type="submit" class="btn btn-secondary btn-block">View Pending Reimbursements</button>
     </form>
     <form action="employee" method="get">
         <div class="form-group">
             <input type="hidden" name="_call" value="viewUnapproved">
         </div>
-        <button type="submit" class="btn btn-secondary">View Unapproved Reimbursements</button>
+        <button type="submit" class="btn btn-secondary btn-block">View Unapproved Reimbursements</button>
     </form>
-    <a class="btn btn-secondary" href="reimburse.html" style="margin: 15px">Request Reimbursement<span class="sr-only">(current)</span></a>
+    <form>
+        <div class="form-group"></div>
+        <button id="redirect" type="button" class="btn btn-secondary btn-block" style="margin-bottom: 10px">Request Reimbursement</button>
+    </form>
+
 </div>
 
 <script>
 $(function(){
   $("#nav-placeholder").load("nav.html");
 });
+
+document.getElementById("redirect").onclick = function () {
+        location.href = "reimburse.html";
+    };
 </script>
+
 </body>
 </html>

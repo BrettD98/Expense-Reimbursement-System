@@ -19,14 +19,26 @@ public class Request {
     @Column(nullable = false)
     private Status status;
 
+    @Column(nullable = false)
+    private String reason;
+
     public Request() {
     }
 
-    public Request(int requestId, int employeeId, double amount, Status status) {
+    public Request(int requestId, int employeeId, double amount, Status status, String reason) {
         this.requestId = requestId;
         this.employeeId = employeeId;
         this.amount = amount;
         this.status = status;
+        this.reason = reason;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 
     public int getRequestId() {
