@@ -75,7 +75,6 @@ public class EmployeeServlet extends HttpServlet {
         }
     }
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         EmployeeService es = ServiceFactory.getService();

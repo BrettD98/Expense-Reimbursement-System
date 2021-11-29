@@ -225,19 +225,22 @@ public class EmployeeService {
 
     private void addNav(StringBuilder sb){
         sb.append("<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">\n" +
-                "    <a class=\"navbar-brand\" href=\"index.html\" onclick='deleteAllCookies()'>Logout</a>\n" +
-                "    <button  class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n" +
-                "        <span class=\"navbar-toggler-icon\"></span>\n" +
-                "    </button>\n" +
-                "\n" +
-                "    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n" +
-                "        <ul class=\"navbar-nav mr-auto\">\n" +
-                "            <li class=\"nav-item active \">\n" +
-                "                <a class=\"nav-link text-right\" href=\"employee.html\">Menu<span class=\"sr-only\">(current)</span></a>\n" +
-                "            </li>\n" +
-                "        </ul>\n" +
-                "    </div>\n" +
-                "</nav>\n" +
+                        "    <a class=\"navbar-brand\" href=\"index.html\">\n" +
+                        "        <div class=\"logo-image\">\n" +
+                        "            <img src=\"logo.png\" class=\"img-fluid\" style=\"width: 40px\">\n" +
+                        "        </div>\n" +
+                        "    </a>\n" +
+                        "    <div class=\"navbar-collapse\" id=\"navbarSupportedContent\">\n" +
+                        "        <ul class=\"navbar-nav mr-auto\" style=\"font-size: 20px\">\n" +
+                        "            <li class=\"nav-item active\">\n" +
+                        "                <a class=\"nav-link text-right\" href=\"index.html\" onclick='deleteAllCookies()'>Logout</a>\n" +
+                        "            </li>\n" +
+                        "            <li class=\"nav-item active \">\n" +
+                        "                <a class=\"nav-link text-right\" href=\"employee.html\">Menu<span class=\"sr-only\">(current)</span></a>\n" +
+                        "            </li>\n" +
+                        "        </ul>\n" +
+                        "    </div>\n" +
+                        "</nav>"+
                 "<script>\n" +
                 "    function deleteAllCookies() {\n" +
                 "    var cookies = document.cookie.split(\";\");\n" +
